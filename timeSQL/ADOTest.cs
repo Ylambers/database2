@@ -13,9 +13,7 @@ namespace timeSQL
     {
         public SqlConnection Con = new SqlConnection("data source =.; database=Netflix; integrated security=SSPI");
 
-        public ADOTest()
-        {
-        }
+        
         public void Timer(int loopTime, char crud)
         {
             Stopwatch sw = Stopwatch.StartNew();
@@ -101,8 +99,9 @@ namespace timeSQL
             sw.Stop();
             Console.WriteLine("Time taken Milliseconds: {0}", sw.Elapsed.TotalMilliseconds);
             Console.WriteLine("Time taken seconds: {0}", sw.Elapsed.TotalSeconds);
-            Console.WriteLine("Time taken seconds: {0}", sw.Elapsed.TotalMinutes);
+            Console.WriteLine("Time taken Minutes: {0}", sw.Elapsed.TotalMinutes);
             Console.WriteLine("Time taken Hours: {0}", sw.Elapsed.TotalHours);
+            Console.WriteLine("Times: {0}", loopTime);
             Console.ReadKey();
         }
 

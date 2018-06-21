@@ -17,7 +17,6 @@ namespace timeSQL
 
             using (var db = new CustomerContext())
             {
-
                 for (int i = 0; i <= times; i++)
                 {
                     var customer = new Customer() { Name = "Yaron Lambers", Email = "Yaronlambers@gmail.com", password = "Geheim", blocked = 1, subscription = 1 };
@@ -26,13 +25,102 @@ namespace timeSQL
 
                     Console.WriteLine("{0}/{1}", i, times);
                 }
-                
             }
             sw.Stop();
             Console.WriteLine("Time taken Milliseconds: {0}", sw.Elapsed.TotalMilliseconds);
             Console.WriteLine("Time taken seconds: {0}", sw.Elapsed.TotalSeconds);
-            Console.WriteLine("Time taken seconds: {0}", sw.Elapsed.TotalMinutes);
+            Console.WriteLine("Time taken Minutes: {0}", sw.Elapsed.TotalMinutes);
             Console.WriteLine("Time taken Hours: {0}", sw.Elapsed.TotalHours);
+            Console.WriteLine("Times: {0}", times);
+            Console.ReadKey();
+        }
+
+        public void CustomerUpdate(int times)
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            
+            using (var db = new CustomerContext())
+            {
+
+                for (int i = 0; i <= times; i++)
+                {
+                    var result = db.Customers.SingleOrDefault(b => b.id == i);
+                    if (result != null)
+                    {
+                        result.password = "Updated";
+                        db.SaveChanges();
+                    }
+                }
+
+            }
+
+
+            sw.Stop();
+            Console.WriteLine("Time taken Milliseconds: {0}", sw.Elapsed.TotalMilliseconds);
+            Console.WriteLine("Time taken seconds: {0}", sw.Elapsed.TotalSeconds);
+            Console.WriteLine("Time taken Minutes: {0}", sw.Elapsed.TotalMinutes);
+            Console.WriteLine("Time taken Hours: {0}", sw.Elapsed.TotalHours);
+            Console.ReadKey();
+        }
+
+        public void CustomerDelete(int times) // Delete customers
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+
+
+            using (var db = new CustomerContext())
+            {
+                for (int i = 0; i <= times; i++)
+                {
+                    var result = db.Customers.SingleOrDefault(b => b.id == i);
+                    if (result != null)
+                    {
+                        db.Customers.Remove(result);
+                        db.SaveChanges();
+                    }
+                }
+
+            }
+
+
+            sw.Stop();
+            Console.WriteLine("Time taken Milliseconds: {0}", sw.Elapsed.TotalMilliseconds);
+            Console.WriteLine("Time taken seconds: {0}", sw.Elapsed.TotalSeconds);
+            Console.WriteLine("Time taken Minutes: {0}", sw.Elapsed.TotalMinutes);
+            Console.WriteLine("Time taken Hours: {0}", sw.Elapsed.TotalHours);
+            Console.WriteLine("Times: {0}", times);
+            Console.ReadKey();
+        }
+
+        public void CustomerView(int times)// view customers
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+
+
+            using (var db = new CustomerContext())
+            {
+                for (int i = 0; i <= times; i++)
+                {
+                    var result = db.Customers.SingleOrDefault(b => b.id == i);
+                    if (result != null)
+                    {
+                        Console.WriteLine(result.Name);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not found");
+                    }
+                }
+
+            }
+
+
+            sw.Stop();
+            Console.WriteLine("Time taken Milliseconds: {0}", sw.Elapsed.TotalMilliseconds);
+            Console.WriteLine("Time taken seconds: {0}", sw.Elapsed.TotalSeconds);
+            Console.WriteLine("Time taken Minutes: {0}", sw.Elapsed.TotalMinutes);
+            Console.WriteLine("Time taken Hours: {0}", sw.Elapsed.TotalHours);
+            Console.WriteLine("Times: {0}", times);
             Console.ReadKey();
         }
     }
