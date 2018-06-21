@@ -103,6 +103,8 @@ namespace timeSQL
             Console.WriteLine("Time taken Hours: {0}", sw.Elapsed.TotalHours);
             Console.WriteLine("Times: {0}", loopTime);
             Console.ReadKey();
+
+            System.IO.File.WriteAllText(@"D:\C#\database2\database2\test.txt", sw.Elapsed.TotalSeconds.ToString());
         }
 
         public void Query(string sql, string type)
