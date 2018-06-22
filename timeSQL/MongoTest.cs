@@ -16,13 +16,11 @@ namespace timeSQL
         public MongoTest()
         {
             Stopwatch sw = Stopwatch.StartNew();
-            int loopTime = 100000;
+            int loopTime = 1;
             _client = new MongoClient(ConnectionString);
 
-             Insert(10);
-            //Update();
-            //Delete();
-            //            View();
+            //Insert(loopTime);
+            Delete(1);   
 
             sw.Stop();
             Console.WriteLine("Time taken Milliseconds: {0}", sw.Elapsed.TotalMilliseconds);
@@ -44,8 +42,8 @@ namespace timeSQL
                 var mongoConstumer = new MongoConstumer
                 {
                     SomeId = 1,
-                    Name = "dennis",
-                    Email = "Dennis@hoitmail.com",
+                    Name = "yaron",
+                    Email = "yaron@hoitmail.com",
                     SomeTableList = new List<MongoConstumer.SomeTable>()
                 };
 
@@ -84,12 +82,12 @@ namespace timeSQL
                 var database = _client.GetDatabase("Netflix");
                 var collection = database.GetCollection<BsonDocument>("Customers");
 
-                var updateCustomerName = new BsonElement("name", "Dennis");
+                var updateCustomerName = new BsonElement("name", "yaron");
 
                 var updatePCostumerDetails =
-                    new BsonDocument { updateCustomerName, new BsonElement("email", "Jansen@hotmail.com") };
+                    new BsonDocument { updateCustomerName, new BsonElement("email", "yaron@hotmail.com") };
 
-                var findCustomer = new BsonDocument(new BsonElement("name", "Dennis"));
+                var findCustomer = new BsonDocument(new BsonElement("name", "yaron"));
                 var updateCustomer = collection.FindOneAndReplace(findCustomer, updatePCostumerDetails);
                 Console.WriteLine("{0}/{1}", i, timer);
             }
@@ -102,7 +100,7 @@ namespace timeSQL
                 var database = _client.GetDatabase("Netflix");
                 var collection = database.GetCollection<BsonDocument>("Customers");
 
-                var findCustomer = new BsonDocument(new BsonElement("name", "Dennis"));
+                var findCustomer = new BsonDocument(new BsonElement("name", "yaron"));
 
                 collection.FindOneAndDelete(findCustomer);
                 Console.WriteLine("{0}/{1}", i, timer);

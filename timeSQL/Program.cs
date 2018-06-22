@@ -12,16 +12,18 @@ namespace timeSQL
     {
         static void Main(string[] args)
         {
-            var test = new MongoTest();
 
-//            var I = new ADOTest();
-//            I.Timer(100, 'r');
+            MongoTest mongo = new MongoTest();
+            
+
+            ADOTest ado = new ADOTest();
+            ado.Timer(1, 'd');
 
 
-//            EntityTest entity = new EntityTest();
-//            entity.CustomerDelete(10);
-
-            Console.ReadKey();
+            EntityTest entity = new EntityTest();
+            entity.CustomerUpdate(1000);
+            
         }
+        
     }
 }
